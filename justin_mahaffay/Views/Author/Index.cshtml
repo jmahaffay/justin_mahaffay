@@ -1,0 +1,95 @@
+﻿@using X.PagedList.Mvc.Core;
+@using X.PagedList;
+
+
+@model IPagedList<justin_mahaffay.Models.Author>
+
+
+
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    <p>
+        <a asp-action="Create">Create New</a>
+    </p>
+
+
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().ID)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().author)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().time)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().subject)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.First().body)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ID)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.author)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.time)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.subject)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.body)
+                    </td>
+                    <td>
+                        @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                        @*@Html.ActionLink("Details", "Details", new { id = item.ID}) |*@
+                        @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+
+    </table>
+</body>
+</html>
+
+@Html.PagedListPager(Model, pageNumber => Url.Action("Index", new
+{
+pageNumber
+}))
+
+
+
+
+
+
+
+
